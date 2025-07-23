@@ -56,7 +56,7 @@ public class AutoHidenToolbarActivity extends AppCompatActivity implements View.
                 .setWebView(webView)
                 .createAgentWeb()
                 .ready()
-                .go("http://m.jd.com/");
+                .go("https://www.baidu.com/");
 
     }
 

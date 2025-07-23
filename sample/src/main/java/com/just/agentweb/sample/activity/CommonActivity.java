@@ -79,7 +79,7 @@ public class CommonActivity extends AppCompatActivity {
 				/* Download files */
 			case FLAG_GUIDE_DICTIONARY_FILE_DOWNLOAD:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = AgentWebFragment.getInstance(mBundle = new Bundle()), AgentWebFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "http://android.myapp.com/");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
 			/* Input tag file upload */
 			case FLAG_GUIDE_DICTIONARY_INPUT_TAG_PROBLEM:
@@ -99,23 +99,23 @@ public class CommonActivity extends AppCompatActivity {
 			/* WebRTC */
 			case FLAG_GUIDE_DICTIONARY_WEBRTC:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = AgentWebFragment.getInstance(mBundle = new Bundle()), AgentWebFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "https://jeromeetienne.github.io/AR.js/three.js/examples/mobile-performance.html");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://webrtc.github.io/samples/");
 				break;
             /* Youku fullscreen video playback */
 			case FLAG_GUIDE_DICTIONARY_VIDEO_FULL_SCREEN:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = AgentWebFragment.getInstance(mBundle = new Bundle()), AgentWebFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "https://m.youku.com/alipay_video/id_XNTExMjg3Njg1Mg==.html?spm=a2hww.12630578.drawer1.dzj1_1");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.youtube.com/");
 //                mBundle.putString(AgentWebFragment.URL_KEY, "https://v.qq.com/x/page/i0530nu6z1a.html");
 				break;
             /* Taobao custom progress bar */
 			case FLAG_GUIDE_DICTIONARY_CUSTOM_PROGRESSBAR:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = CustomIndicatorFragment.getInstance(mBundle = new Bundle()), CustomIndicatorFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "https://m.taobao.com/?sprefer=sypc00");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
             /* Wandoujia */
 			case FLAG_GUIDE_DICTIONARY_CUSTOM_WEBVIEW_SETTINGS:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = CustomSettingsFragment.getInstance(mBundle = new Bundle()), CustomSettingsFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "https://m.wandoujia.com/");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
 
             /* SMS */
@@ -126,12 +126,12 @@ public class CommonActivity extends AppCompatActivity {
             /* Custom WebView */
 			case FLAG_GUIDE_DICTIONARY_CUTSTOM_WEBVIEW:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = CustomWebViewFragment.getInstance(mBundle = new Bundle()), CustomWebViewFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
             /* Bounce effect */
 			case FLAG_GUIDE_DICTIONARY_BOUNCE_EFFACT:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = BounceWebFragment.getInstance(mBundle = new Bundle()), BounceWebFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "http://m.mogujie.com/?f=mgjlm&ptp=_qd._cps______3069826.152.1.0");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
 
             /* JSBridge demo */
@@ -143,18 +143,18 @@ public class CommonActivity extends AppCompatActivity {
             /* SmartRefresh pull-to-refresh */
 			case FLAG_GUIDE_DICTIONARY_PULL_DOWN_REFRESH:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = SmartRefreshWebFragment.getInstance(mBundle = new Bundle()), SmartRefreshWebFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "http://www.163.com/");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
                 /* Map */
 			case FLAG_GUIDE_DICTIONARY_MAP:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = AgentWebFragment.getInstance(mBundle = new Bundle()), AgentWebFragment.class.getName());
-				mBundle.putString(AgentWebFragment.URL_KEY, "https://map.baidu.com/mobile/webapp/index/index/#index/index/foo=bar/vt=map");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://maps.google.com/");
 				break;
                 /* Instant first screen loading */
 			case FLAG_GUIDE_DICTIONARY_VASSONIC_SAMPLE:
 				ft.add(R.id.container_framelayout, mAgentWebFragment = VasSonicFragment.create(mBundle = new Bundle()), AgentWebFragment.class.getName());
 				mBundle.putLong(PARAM_CLICK_TIME, getIntent().getLongExtra(PARAM_CLICK_TIME, -1L));
-				mBundle.putString(AgentWebFragment.URL_KEY, "http://mc.vip.qq.com/demo/indexv3");
+				mBundle.putString(AgentWebFragment.URL_KEY, "https://www.baidu.com/");
 				break;
 			default:
 				break;

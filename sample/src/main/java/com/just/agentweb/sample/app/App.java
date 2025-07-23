@@ -3,9 +3,9 @@ package com.just.agentweb.sample.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.os.StrictMode;
 
 import com.just.agentweb.AgentWebCompat;
+import com.just.agentweb.AgentWebConfig;
 import com.just.agentweb.sample.service.WebService;
 import com.queue.library.GlobalQueue;
 
@@ -20,21 +20,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         
-        // Enable StrictMode for debugging
-        if (BuildConfig.DEBUG) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectDiskReads()
-                    .detectDiskWrites()
-                    .detectNetwork()
-                    .penaltyLog()
-                    .build());
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectLeakedSqlLiteObjects()
-                    .detectLeakedClosableObjects()
-                    .penaltyLog()
-                    .build());
-        }
-
         /**
          * Note: WebView initialization takes about 250ms.
          * Pre-initializing WebView can improve page initialization speed and reduce white screen time.
@@ -42,6 +27,9 @@ public class App extends Application {
          * it is recommended not to pre-initialize WebView here.
          */
 //        WebView mWebView=new WebView(new MutableContextWrapper(this));
+        
+        // Enable debug mode
+        AgentWebConfig.debug();
 
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //            // This process is dedicated to LeakCanary for heap analysis.

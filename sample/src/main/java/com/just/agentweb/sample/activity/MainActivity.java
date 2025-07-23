@@ -92,20 +92,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        try {
-            setContentView(R.layout.activity_main);
-        } catch (Exception e) {
-            Log.e(TAG, "Error setting content view", e);
-            finish();
-            return;
-        }
+        setContentView(R.layout.activity_main);
 
         mToolbar = (Toolbar) this.findViewById(R.id.toolbar);
-        if (mToolbar == null) {
-            Log.e(TAG, "Toolbar not found");
-            finish();
-            return;
-        }
         mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setTitle("");
         mTitleTextView = (TextView) this.findViewById(R.id.toolbar_title);
@@ -131,14 +120,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        if (AgentWebConfig.DEBUG) {
-            Log.i("Info", "Debug mode");
-        } else {
-            Log.i("Info", "Release mode");
-        }
-
-        AgentWebConfig.debug();
         ServiceManager.getInstance().publish(mApi);
     }
 
@@ -243,7 +224,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, NativeDownloadActivity.class));
                 break;
             case FLAG_GUIDE_DICTIONARY_IPC:
-                startActivity(new Intent(this, RemoteWebViewlActivity.class).putExtra(AgentWebFragment.URL_KEY, "https://m.vip.com/?source=www&jump_https=1"));
+                startActivity(new Intent(this, RemoteWebViewlActivity.class).putExtra(AgentWebFragment.URL_KEY, "https://www.baidu.com/"));
                 break;
             default:
                 break;

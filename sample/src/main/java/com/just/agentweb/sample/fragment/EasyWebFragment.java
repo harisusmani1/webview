@@ -105,6 +105,6 @@ public class EasyWebFragment extends BaseAgentWebFragment {
     @Nullable
     @Override
     protected String getUrl() {
-        return "https://m.v.qq.com/index.html";
+        return "https://www.baidu.com/";
     }
 }

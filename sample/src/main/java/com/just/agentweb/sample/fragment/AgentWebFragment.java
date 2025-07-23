@@ -119,12 +119,6 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
-        if (getActivity() == null) {
-            Log.e(TAG, "Activity is null in onViewCreated");
-            return;
-        }
-
-
         mAgentWeb = AgentWeb.with(this)//
                 .setAgentWebParent((LinearLayout) view, -1, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)) // Pass in AgentWeb's parent control.
                 .useDefaultIndicator(-1, 3) // Set progress bar color and height, -1 is default value, height is 2, unit is dp.
@@ -144,29 +138,13 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
                 .ready() // Set WebSettings.
                 .go(getUrl()); // WebView loads and displays the page at this URL address.
 
-
-        AgentWebConfig.debug();
-
         initView(view);
-
 
         // AgentWeb does not fully cover WebView functionality, so some settings that AgentWeb does not provide, please set from WebView side.
         mAgentWeb.getWebCreator().getWebView().setOverScrollMode(WebView.OVER_SCROLL_NEVER);
         // mAgentWeb.getWebCreator().getWebView() get WebView.
 
         // mAgentWeb.getWebCreator().getWebView().setOnLongClickListener();
-
-//		Runtime.getInstance().setFileComparatorFactory(new FileComparator.FileComparatorFactory() {
-//			@Override
-//			public FileComparator newFileComparator() {
-//				return new FileComparator() {
-//					@Override
-//					public int compare(String url, File originFile, String inputMD5, String originFileMD5) {
-//						return FileComparator.COMPARE_RESULT_SUCCESSFUL;
-//					}
-//				};
-//			}
-//		});
     }
 
 
@@ -236,7 +214,7 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
                                         super.onStart(url, userAgent, contentDisposition, mimetype, contentLength, extra);
                                     }
 
-                                    @MainThread
+                                    //@MainThread
                                     @Override
                                     public void onProgress(String url, long downloaded, long length, long usedTime) {
                                         super.onProgress(url, downloaded, length, usedTime);
@@ -261,12 +239,11 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
     public String getUrl() {
         String target = "";
 
-        if (TextUtils.isEmpty(target = this.getArguments().getString(URL_KEY))) {
-            target = "http://cw.gzyunjuchuang.com/";
+        if (getArguments() != null && !TextUtils.isEmpty(target = this.getArguments().getString(URL_KEY))) {
+            return target;
+        } else {
+            return "https://www.baidu.com/";
         }
-
-//		return "http://ggzy.sqzwfw.gov.cn/WebBuilderDS/WebbuilderMIS/attach/downloadZtbAttach.jspx?attachGuid=af982055-3d76-4b00-b5ab-36dee1f90b11&appUrlFlag=sqztb&siteGuid=7eb5f7f1-9041-43ad-8e13-8fcb82ea831a";
-        return target;
     }
 
     protected com.just.agentweb.WebChromeClient mWebChromeClient = new WebChromeClient() {
@@ -295,30 +272,10 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
 
         private HashMap<String, Long> timer = new HashMap<>();
         
-        @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            Log.e(TAG, "WebView error: " + errorCode + " - " + description + " for URL: " + failingUrl);
-            super.onReceivedError(view, errorCode, description, failingUrl);
-        }
-
-        @Override
-        public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                Log.e(TAG, "WebView resource error: " + error.getErrorCode() + " - " + error.getDescription());
-            }
-            super.onReceivedError(view, request, error);
-        }
-
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             return super.shouldOverrideUrlLoading(view, request);
-        }
-
-        @Nullable
-        @Override
-        public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
-            return super.shouldInterceptRequest(view, request);
         }
 
         //
@@ -368,23 +325,9 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
         }*/
 
         @Override
-        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-            super.onReceivedHttpError(view, request, errorResponse);
-
-//			Log.i(TAG, "onReceivedHttpError:" + 3 + "  request:" + mGson.toJson(request) + "  errorResponse:" + mGson.toJson(errorResponse));
-        }
-
-        @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             handler.proceed();
             super.onReceivedSslError(view, handler, error);
-        }
-
-        @Override
-        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
-            super.onReceivedError(view, errorCode, description, failingUrl);
-
-//			Log.i(TAG, "onReceivedError:" + errorCode + "  description:" + description + "  errorResponse:" + failingUrl);
         }
     };
 
