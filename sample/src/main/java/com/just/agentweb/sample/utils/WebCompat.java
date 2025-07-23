@@ -37,6 +37,11 @@ public class WebCompat {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
             return;
         }
+        
+        if (context == null) {
+            return;
+        }
+        
         try {
 
             Set<String> pathSet = new HashSet<>();

@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.just.agentweb.sample"
         namespace 'com.just.agentweb.sample'
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion TARGET_SDK_VERSION.toInteger()
         multiDexEnabled true
         versionCode 5
@@ -92,4 +92,6 @@ dependencies {
         exclude group: 'com.android.support'
     })
     implementation 'top.zibin:Luban:1.1.8'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.fragment:fragment:1.6.2'
 }

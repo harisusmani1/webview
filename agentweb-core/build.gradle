@@ -6,7 +6,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
         targetSdkVersion TARGET_SDK_VERSION.toInteger()
         namespace 'com.just.agentweb'
         versionCode 3

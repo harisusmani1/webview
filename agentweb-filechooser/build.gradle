@@ -5,7 +5,7 @@ android {
     compileSdk COMPILE_SDK_VERSION.toInteger()
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 21
         namespace 'com.just.agentweb.filechooser'
         targetSdkVersion TARGET_SDK_VERSION.toInteger()
         versionCode 2

@@ -32,6 +32,21 @@
 -dontwarn com.just.agentweb.**
 -keepclassmembers class com.just.agentweb.sample.common.AndroidInterface{ *; }
 
+# Keep WebView related classes
+-keep class android.webkit.** { *; }
+-keep class androidx.webkit.** { *; }
+
+# Keep reflection-based classes
+-keepattributes Signature
+-keepattributes *Annotation*
+-keepattributes EnclosingMethod
+
+# Prevent obfuscation of JavaScript interface methods
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+-keepclassmembers class com.just.agentweb.sample.common.AndroidInterface{ *; }
+
 
 -keepclassmembers class com.just.agentweb.sample.common.SonicJavaScriptInterface{ *; }
 

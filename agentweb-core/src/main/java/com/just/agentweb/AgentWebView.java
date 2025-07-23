@@ -133,6 +133,9 @@ public class AgentWebView extends LollipopFixedWebView {
 
     @Override
     public void destroy() {
+        if (!mIsInited) {
+            return;
+        }
         setVisibility(View.GONE);
         if (mJsCallJavas != null) {
             mJsCallJavas.clear();
@@ -143,11 +146,10 @@ public class AgentWebView extends LollipopFixedWebView {
         removeAllViewsInLayout();
         fixedStillAttached();
         releaseConfigCallback();
-        if (mIsInited) {
-            resetAccessibilityEnabled();
-            LogUtils.i(TAG, "destroy web");
-            super.destroy();
-        }
+        resetAccessibilityEnabled();
+        LogUtils.i(TAG, "destroy web");
+        super.destroy();
+        mIsInited = false;
     }
 
     @Override

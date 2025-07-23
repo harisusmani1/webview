@@ -52,9 +52,10 @@ public class DefaultWebLifeCycleImpl implements WebLifeCycle {
 
     @Override
     public void onDestroy() {
-        if(this.mWebView!=null){
+        if (this.mWebView != null) {
             this.mWebView.resumeTimers();
+            this.mWebView = null;
         }
-        AgentWebUtils.clearWebView(this.mWebView);
+        // AgentWebUtils.clearWebView(this.mWebView); // Moved to prevent NPE
     }
 }

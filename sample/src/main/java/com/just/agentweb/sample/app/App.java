@@ -3,6 +3,7 @@ package com.just.agentweb.sample.app;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.StrictMode;
 
 import com.just.agentweb.AgentWebCompat;
 import com.just.agentweb.sample.service.WebService;
@@ -18,6 +19,21 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        
+        // Enable StrictMode for debugging
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                    .detectDiskReads()
+                    .detectDiskWrites()
+                    .detectNetwork()
+                    .penaltyLog()
+                    .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                    .detectLeakedSqlLiteObjects()
+                    .detectLeakedClosableObjects()
+                    .penaltyLog()
+                    .build());
+        }
 
         /**
          * Note: WebView initialization takes about 250ms.

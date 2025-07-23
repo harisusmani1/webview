@@ -91,12 +91,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        setContentView(R.layout.activity_main);
-
+        
+        try {
+            setContentView(R.layout.activity_main);
+        } catch (Exception e) {
+            Log.e(TAG, "Error setting content view", e);
+            finish();
+            return;
+        }
 
         mToolbar = (Toolbar) this.findViewById(R.id.toolbar);
+        if (mToolbar == null) {
+            Log.e(TAG, "Toolbar not found");
+            finish();
+            return;
+        }
         mToolbar.setTitleTextColor(Color.WHITE);
         mToolbar.setTitle("");
         mTitleTextView = (TextView) this.findViewById(R.id.toolbar_title);

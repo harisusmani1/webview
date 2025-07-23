@@ -118,6 +118,11 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        
+        if (getActivity() == null) {
+            Log.e(TAG, "Activity is null in onViewCreated");
+            return;
+        }
 
 
         mAgentWeb = AgentWeb.with(this)//
@@ -289,9 +294,18 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
     protected com.just.agentweb.WebViewClient mWebViewClient = new com.just.agentweb.WebViewClient() {
 
         private HashMap<String, Long> timer = new HashMap<>();
+        
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            Log.e(TAG, "WebView error: " + errorCode + " - " + description + " for URL: " + failingUrl);
+            super.onReceivedError(view, errorCode, description, failingUrl);
+        }
 
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Log.e(TAG, "WebView resource error: " + error.getErrorCode() + " - " + error.getDescription());
+            }
             super.onReceivedError(view, request, error);
         }
 
@@ -617,7 +631,9 @@ public class AgentWebFragment extends Fragment implements FragmentKeyDown, FileC
 
     @Override
     public void onDestroyView() {
-        mAgentWeb.getWebLifeCycle().onDestroy();
+        if (mAgentWeb != null) {
+            mAgentWeb.getWebLifeCycle().onDestroy();
+        }
         FileCompressor.getInstance().unregisterFileCompressEngine(this);
         super.onDestroyView();
     }
